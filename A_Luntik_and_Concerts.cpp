@@ -47,7 +47,9 @@ void sieve(){
 
 
 void solve(){
-
+    ll a,b,c;cin>>a>>b>>c;
+    ll tot=a+2*b+3*c;
+    cout<<tot%2<<endl;
 }
 
 int main(){

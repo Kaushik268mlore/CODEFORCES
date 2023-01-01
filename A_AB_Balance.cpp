@@ -47,7 +47,10 @@ void sieve(){
 
 
 void solve(){
-
+    string s;cin>>s;
+    int n=s.length();
+    s[0]=s[n-1];
+    cout<<s<<endl;
 }
 
 int main(){

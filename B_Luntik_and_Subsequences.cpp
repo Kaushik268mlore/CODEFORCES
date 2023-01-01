@@ -44,10 +44,25 @@ void sieve(){
     }
    }
 }
-
+/* there will be 2^(no.of zeroes) subsets with the same sum 
+and multiply that number to the no of ones u get the nearly close number of subsets 
+It can be noticed that all subsequences with sum s−1 appear if we erase some 0-es from the array and also erase exactly one 1. 
+We can independently calculate the number of ways to erase some 0-es from the array (that way the sum will remain the same), 
+then calculate the number of ways to erase exactly one 1 from the array (that way the sum will become equal to s−1), 
+and then multiply these two numbers. 
+Therefore, the answer is equal to 2c0⋅c1, where c0 is the number of 0-es in the array, and c1 is the number of 1-s.
+*/
 
 void solve(){
-
+    ll ans=1,sum=0;
+    ll n;cin>>n;
+    vl arr(n);
+    ll z=0,o=0;
+    FOR(i,0,n){cin>>arr[i];
+        if(arr[i]==1)o++;
+        if(arr[i]==0)z++;}
+    //sort(arr.begin(),arr.end());
+        cout<<(1ll<<z)*o<<endl;
 }
 
 int main(){

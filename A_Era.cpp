@@ -47,7 +47,20 @@ void sieve(){
 
 
 void solve(){
-
+     
+   int n;
+   cin>>n;
+   int arr[n+1];
+   for(int i=1;i<=n;i++){
+     cin>>arr[i];
+   }
+   int m=arr[1]-1;
+   for(int i=2;i<=n;i++){
+ 
+     m=max(m,arr[i]-i);
+ 
+   }
+   cout<<m<<endl;
 }
 
 int main(){
