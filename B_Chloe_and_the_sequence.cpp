@@ -47,17 +47,23 @@ void sieve(){
 
 
 void solve(){
-
+    ll n,k;
+    cin>>n>>k;
+    ll ans=1;
+    while(k%2==0){
+        k/=2;
+        ans++;
+    }
+    cout<<ans<<endl;
 }
 
 int main(){
     ios_base::sync_with_stdio(false);
 cin.tie(0);
 cout.tie(0);
-  ll t;
+  /* ll t;
   cin>>t;
-  TC(t){
+  TC(t){ */
     solve();
+  
   }
-}
-

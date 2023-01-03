@@ -47,6 +47,16 @@ void sieve(){
 
 
 void solve(){
+    int a,k,m,n;cin>>a>>k>>m>>n;
+    vector<pair<int,string>>arr;
+    arr.push_back({a,"Hussien"});
+    arr.push_back({k,"Atef"});
+    arr.push_back({m,"Karemo"});
+    arr.push_back({n,"Ezzat"});
+    sort(arr.begin(),arr.end(),[](pair<int,string>p1,pair<int,string>p2)->bool{
+        return p1.first<p2.first;
+    });
+    cout<<arr[3].second<<" "<<arr[2].second<<endl;
 
 }
 
