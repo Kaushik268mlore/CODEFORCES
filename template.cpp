@@ -60,4 +60,3 @@ cout.tie(0);
     solve();
   }
 }
-
