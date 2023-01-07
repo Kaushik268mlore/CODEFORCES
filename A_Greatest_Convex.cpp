@@ -24,6 +24,7 @@ typedef vector<vl> vvl;
 #define No                           cout << "No\n";
 #define TC(t) while (t--)
 #define mod 1000000007
+#define int long long 
 ll inv(ll i) {if (i == 1) return 1; return (mod - ((mod / i) * inv(mod % i)) % mod) % mod;}
  
 ll mod_mul(ll a, ll b) {a = a % mod; b = b % mod; return (((a * b) % mod) + mod) % mod;}
@@ -47,7 +48,8 @@ void sieve(){
 
 
 void solve(){
-
+    int k;cin>>k;
+    cout<<k-1<<endl;
 }
 
 int32_t main(){

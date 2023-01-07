@@ -24,6 +24,7 @@ typedef vector<vl> vvl;
 #define No                           cout << "No\n";
 #define TC(t) while (t--)
 #define mod 1000000007
+#define int long long
 ll inv(ll i) {if (i == 1) return 1; return (mod - ((mod / i) * inv(mod % i)) % mod) % mod;}
  
 ll mod_mul(ll a, ll b) {a = a % mod; b = b % mod; return (((a * b) % mod) + mod) % mod;}
@@ -45,9 +46,49 @@ void sieve(){
    }
 }
 
-
+/* bool check(vector<int>arr){
+    int n=arr.size();
+    if(n==1)return true;
+    else{
+        for(int i=0;i<n-1;i++){
+            if(arr[i]>arr[i+1])return false;
+        }
+    }
+    return true;
+}
 void solve(){
-
+    int n,k;cin>>n>>k;
+    vector<int>arr(n);
+    FOR(i,0,n)cin>>arr[i];
+    int res=INT_MIN;
+    if(check(arr)){cout<<"0\n";return;}
+    else{
+    for(int i=0;i<n;i++){
+        
+    }
+    cout<<res<<endl;}
+} */
+void solve(){
+            int n,k;
+        cin>>n>>k;
+        int a[n];
+        for(int i=0;i<n;i++){cin>>a[i];}
+ 
+        int dp[n];
+        map<int,int> m;
+ 
+        m[0]=0;
+        for(int i=0;i<n;i++)
+            {
+                dp[i]=-1e15;
+                if(m.find(a[i]-1)!=m.end()){dp[i]=m[a[i]-1]+1;}
+                if(dp[i]>0){m[a[i]]=dp[i];}
+            }
+ 
+        int ans=0;
+        for(auto x:m){ans=max(ans,x.second);}
+ 
+        cout<<(n-ans+k-1)/k<<"\n";
 }
 
 int32_t main(){
