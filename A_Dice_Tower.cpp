@@ -47,23 +47,24 @@ void sieve(){
 
 
 void solve(){
-    int n,m;cin>>n>>m;
-    FORN(i,1,n){
-        FORN(j,1,m){
-            int t;cin>>t;
-            if(t&&((i==1)||(i==n)||(j==1)||(j==m))){cout<<"2\n";return;}
-        }
+    int n;
+    cin>>n;
+    int top;cin>>top;
+    int nxt=7-top;
+    for(int i=0;i<n;i++){
+        int a,b;cin>>a>>b;
+        if(nxt==a||nxt==b||nxt==7-a||nxt==7-b){cout<<"NO\n";return;}
     }
-    cout<<"4\n";
+    cout<<"YES\n";
 }
 
 int32_t main(){
     ios_base::sync_with_stdio(false);
 cin.tie(0);
 cout.tie(0);
-  /* ll t;
-  cin>>t;
-  TC(t){
-   */  solve();
+  //ll t;
+  //cin>>t;
+  //TC(t){
+    solve();
   
 }
