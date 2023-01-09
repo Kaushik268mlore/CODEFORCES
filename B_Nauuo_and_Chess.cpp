@@ -48,16 +48,22 @@ void sieve(){
 
 
 void solve(){
-
+    int n;cin>>n;
+    int m=n/2+1;
+    cout<<m<<endl;
+    int p=1;
+    for(int i=1;i<= n;i++){
+        if(i&1){cout<<p<<" "<<p<<endl;}
+        else {cout<<p<<" "<<p+1<<endl;
+            p++;}
+    }
 }
 
 int32_t main(){
     ios_base::sync_with_stdio(false);
 cin.tie(0);
 cout.tie(0);
-  ll t;
-  cin>>t;
-  TC(t){
+  
     solve();
-  }
+  
 }
