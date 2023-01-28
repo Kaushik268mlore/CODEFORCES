@@ -48,7 +48,15 @@ void sieve(){
 
 
 void solve(){
-
+    int arr[6][6];
+    int x,y;
+    FOR(i,1,6){
+        FOR(j,1,6){
+        cin>>arr[i][j];
+        if(arr[i][j]){x=i;y=j;}
+        }
+    }
+    cout<<abs(3-x)+abs(3-y)<<endl;
 }
 
 int32_t main(){
@@ -56,7 +64,7 @@ int32_t main(){
 cin.tie(0);
 cout.tie(0);
   ll t=1;
-  cin>>t;
+ // cin>>t;
   TC(t){
     solve();
   }

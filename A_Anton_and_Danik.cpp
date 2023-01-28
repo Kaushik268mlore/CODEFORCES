@@ -48,7 +48,15 @@ void sieve(){
 
 
 void solve(){
-
+    int n;cin>>n;
+    string s;cin>>s;
+    int cnt=0;
+    FOR(i,0,n){
+        if(s[i]=='A')cnt++;
+    }
+    if(cnt>n-cnt){cout<<"Anton\n";return;}
+    else if(cnt==n-cnt){cout<<"Friendship\n";return;}
+    else cout<<"Danik\n";
 }
 
 int32_t main(){
@@ -56,7 +64,7 @@ int32_t main(){
 cin.tie(0);
 cout.tie(0);
   ll t=1;
-  cin>>t;
+  //cin>>t;
   TC(t){
     solve();
   }

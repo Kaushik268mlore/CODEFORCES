@@ -48,7 +48,17 @@ void sieve(){
 
 
 void solve(){
-
+    int n,h;
+    cin>>n>>h;
+    int arr[n];
+    int res=0;
+    FOR(i,0,n){
+    cin>>arr[i];
+    if(arr[i]>h){res+=2;}
+    else {res++;}
+    }
+    cout<<res<<endl;
+    
 }
 
 int32_t main(){
@@ -56,7 +66,7 @@ int32_t main(){
 cin.tie(0);
 cout.tie(0);
   ll t=1;
-  cin>>t;
+  //cin>>t;
   TC(t){
     solve();
   }

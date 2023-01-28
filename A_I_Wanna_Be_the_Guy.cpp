@@ -48,7 +48,14 @@ void sieve(){
 
 
 void solve(){
-
+int l;cin>>l;
+int p;cin>>p;
+unordered_set<int>s;
+FOR(i,0,p){int t;cin>>t;s.insert(t);}
+int q;cin>>q;
+FOR(i,0,q){int t;cin>>t;s.insert(t);}
+if(s.size()>=l)cout<<"I become the guy.";
+else cout<<"Oh, my keyboard!";
 }
 
 int32_t main(){
@@ -56,7 +63,7 @@ int32_t main(){
 cin.tie(0);
 cout.tie(0);
   ll t=1;
-  cin>>t;
+ // cin>>t;
   TC(t){
     solve();
   }
