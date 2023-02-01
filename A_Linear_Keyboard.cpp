@@ -22,10 +22,6 @@ typedef vector<vl> vvl;
 #define NO                           cout << "NO\n";
 #define Yes                          cout << "Yes\n";
 #define No                           cout << "No\n";
-#define max3(a,b,c) max(max((a),(b)),(c))
-#define max4(a,b,c,d) max(max((a),(b)),max((c),(d)))
-#define min3(a,b,c) min(min((a),(b)),(c))
-#define min4(a,b,c,d) min(min((a),(b)),max((c),(d)))
 #define TC(t) while (t--)
 #define mod 1000000007
 #define FastIO ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
@@ -52,20 +48,24 @@ void sieve(){
 
 
 void solve(){
-    ll a , b , c , d;
-    	cin >>d >> a >> b >> c ;
-    	ll x = a*((d + a - 1)/a);
-    	ll y = b*((d + b - 1)/b);
-    	ll z = c*((d + c - 1)/c);
-    	cout << min({x-d,y-d,z-d})<<endl;
-
+    string s;cin>>s;
+    unordered_map<char,int>m;
+    FOR(i,0,26)m[s[i]]=i;
+    int res=0;
+    string t;cin>>t;
+    char curr=t[0];
+    FOR(i,1,t.length()){
+        res+=(abs(m[curr]-m[t[i]]));
+        curr=t[i];
+    }
+    cout<<res<<"\n";
 }
 
 int32_t main(){
     ios_base::sync_with_stdio(false);
 cin.tie(0);
 cout.tie(0);
-  ll t;
+  ll t=1;
   cin>>t;
   TC(t){
     solve();
