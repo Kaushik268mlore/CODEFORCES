@@ -47,17 +47,22 @@ void sieve(){
 }
 
 
-void solve(){
-    int n,k;cin>>n>>k;
-    if(k>26)k=min(26,n);
-    vector<char> arr;
-    FOR(i,0,k)arr.push_back('a'+i);
-    int i=0;
-    while(n){
-        cout<<arr[i%k];
-        i++;
-        n--;
-    }
+void solve(){//easy 2-pointers solution
+    int n,b;cin>>n>>b;
+    b--;//F, this array was a 1-indexed array..lol
+    vector<int>arr(n);
+    FOR(i,0,n)cin>>arr[i];
+    int l=b-1,r=b+1,cnt=0;
+    if(arr[b])cnt++;
+    while(l>=0||r<=n-1){
+        if(l>=0&&r<=n-1){
+            if(arr[l]&&arr[r])cnt+=2;
+        }
+        else if (l>=0&&arr[l])cnt++;
+        else if(r<=n-1&&arr[r])cnt++;
+        l--,r++;
+        }
+    cout<<cnt;
 }
 
 int32_t main(){

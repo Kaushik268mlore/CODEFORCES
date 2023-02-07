@@ -47,17 +47,38 @@ void sieve(){
 }
 
 
-void solve(){
-    int n,k;cin>>n>>k;
-    if(k>26)k=min(26,n);
-    vector<char> arr;
-    FOR(i,0,k)arr.push_back('a'+i);
-    int i=0;
-    while(n){
-        cout<<arr[i%k];
-        i++;
-        n--;
+/* void solve(){//gotta change the 2-pointer implementation
+    int n;cin>>n;
+    if(n==1){cout<<1;return;}
+    vector<int>arr(n);
+    FOR(i,0,n)cin>>arr[i];
+    int res=0;
+    FOR(i,0,n){
+        int cnt=0;
+        FOR(j,i+1,n){
+            if(arr[j]<=arr[i])cnt++;
+            else break;
+        }
+        FORD(j,i-1,0){
+            if(arr[j]<=arr[i])cnt++;
+            else break;
+        }
+        res=max(res,cnt);
     }
+    cout<<res-1<<"\n";
+} */
+void solve(){
+    int n;cin>>n;
+    vector<int>arr(n);
+    FOR(i,0,n)cin>>arr[i];
+    int res=0;
+    FOR(i,0,n){
+        int l=i,r=i;
+        while(l>0&&arr[l-1]<=arr[l])l--;
+        while(r<n-1&&arr[r+1]<=arr[r])r++;
+        res=max(res,r-l+1);
+    }
+    cout<<res;
 }
 
 int32_t main(){
@@ -65,7 +86,7 @@ int32_t main(){
 cin.tie(0);
 cout.tie(0);
   ll t=1;
-  //cin>>t;
+ // cin>>t;
   TC(t){
     solve();
   }

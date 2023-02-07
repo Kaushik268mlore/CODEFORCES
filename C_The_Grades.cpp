@@ -45,18 +45,36 @@ void sieve(){
     }
    }
 }
-
+/* bool comp(const pair<string,vector<int>>&a,const pair<string,vector<int>>&b){
+    auto arr=a.second,brr=b.second;
+    string aa=a.first,bb=a.first;
+    if(abs(arr[0]-brr[0])<=10)return aa<bb;
+    return arr[0]>brr[0];
+} */
+bool comp(const pair<string, vector<int>> &a, const pair<string, vector<int>> &b)
+{
+    if (abs(a.second[0] - b.second[0])>10) return a.second[0] > b.second[0];
+    return a.first < b.first;
+}
 
 void solve(){
-    int n,k;cin>>n>>k;
-    if(k>26)k=min(26,n);
-    vector<char> arr;
-    FOR(i,0,k)arr.push_back('a'+i);
-    int i=0;
-    while(n){
-        cout<<arr[i%k];
-        i++;
-        n--;
+    int n;cin>>n;
+    vector<pair<string,vector<int>>>arr(n);
+    FOR(i,0,n){
+        string t ;cin>>t;
+        vector<int>s(5);
+        FOR(i,1,5)cin>>s[i];
+        s[0]=accumulate(s.begin(),s.end(),0);
+        arr[i]={t,s};
+    }
+    sort(arr.begin(),arr.end(),comp);
+    FOR(i,0,n){
+        cout<<arr[i].first<<" ";
+        auto res=arr[i].second;
+        FOR(i,0,5){
+           cout<<res[i]<<" "; 
+        }
+        cout<<"\n";
     }
 }
 

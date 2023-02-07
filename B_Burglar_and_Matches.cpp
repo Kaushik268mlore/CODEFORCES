@@ -48,16 +48,20 @@ void sieve(){
 
 
 void solve(){
-    int n,k;cin>>n>>k;
-    if(k>26)k=min(26,n);
-    vector<char> arr;
-    FOR(i,0,k)arr.push_back('a'+i);
-    int i=0;
-    while(n){
-        cout<<arr[i%k];
-        i++;
-        n--;
+    int n,m;cin>>n>>m;
+    vector<vector<int>>arr(m,vector<int>(2));
+    FOR(i,0,m){
+        cin>>arr[i][0]>>arr[i][1];
     }
+    sort(arr.begin(),arr.end(),[](vector<int>a,vector<int>b)->bool{
+        return a[1]>b[1];
+    });
+    int i=0,res=0;
+    while(i<m){
+        if(n>arr[i][0]){res+=(arr[i][0]*arr[i][1]);n-=arr[i][0];i++;}
+        else {res+=(n*arr[i][1]);i++;break;}
+    }
+    cout<<res;
 }
 
 int32_t main(){
