@@ -45,37 +45,53 @@ void sieve(){
     }
    }
 }
-/* bool comp(const pair<string,vector<int>>&a,const pair<string,vector<int>>&b){//failed comp function
-    auto arr=a.second,brr=b.second;
-    string aa=a.first,bb=a.first;
-    if(abs(arr[0]-brr[0])<=10)return aa<bb;
-    return arr[0]>brr[0];
-} */
-bool comp(const pair<string, vector<int>> &a, const pair<string, vector<int>> &b)
-{
-    if(abs(a.second[0]-b.second[0])>10) return a.second[0]>b.second[0];
-    return a.first<b.first;
-}
+
+
+/* void solve(){
+    ll n;cin>>n;
+    vector<int>arr(n+);
+         vector<int>l(n+1);
+    vi r(n+1); 
+    ll tp=1;
+    FORN(i,1,n){cin>>arr[i];tp*=arr[i];}
+    //cout<<tp<<"TP"<<endl;
+    ll lp=1,rp=1;
+    bool fl=1;
+    if(tp==1){cout<<1<<endl;fl=0;return;}
+    FORN(i,1,n){
+        lp*=arr[i];
+        //cout<<lp<<" ";
+        rp=tp/lp;
+        //cout<<rp<<" ";
+        //cout<<endl;
+        if(lp==rp&&tp%lp==0){
+            cout<<i<<endl;fl=0;
+            break;
+        }
+    }
+    if(fl)cout<<"-1"<<endl;
+}*/ 
+
 
 void solve(){
-    int n;cin>>n;
-    vector<pair<string,vector<int>>>arr(n);
-    FOR(i,0,n){
-        string t ;cin>>t;
-        vector<int>s(5);
-        FOR(i,1,5)cin>>s[i];
-        s[0]=accumulate(s.begin(),s.end(),0);
-        arr[i]={t,s};
-    }
-    sort(arr.begin(),arr.end(),comp);
-    FOR(i,0,n){
-        cout<<arr[i].first<<" ";
-        auto res=arr[i].second;
-        FOR(i,0,5){
-           cout<<res[i]<<" "; 
+ 
+    int n; cin >> n;
+    vi a(n); for(auto &x : a) cin >> x;
+    for(auto &x : a) x = (x == 2);
+ 
+    int ssum = accumulate(a.begin(),a.end(), 0);
+    int psum = 0;
+    
+    for(int i=0; i < n; i++){
+        psum += a[i];
+        ssum -= a[i];
+        if(psum == ssum){
+            cout << i+1 << '\n';
+            return;
         }
-        cout<<"\n";
     }
+    cout << -1 << '\n';
+ 
 }
 
 int32_t main(){
@@ -83,7 +99,7 @@ int32_t main(){
 cin.tie(0);
 cout.tie(0);
   ll t=1;
-  //cin>>t;
+  cin>>t;
   TC(t){
     solve();
   }

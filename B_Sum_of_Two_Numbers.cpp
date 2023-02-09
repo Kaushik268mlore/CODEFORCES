@@ -45,45 +45,41 @@ void sieve(){
     }
    }
 }
-/* bool comp(const pair<string,vector<int>>&a,const pair<string,vector<int>>&b){//failed comp function
-    auto arr=a.second,brr=b.second;
-    string aa=a.first,bb=a.first;
-    if(abs(arr[0]-brr[0])<=10)return aa<bb;
-    return arr[0]>brr[0];
-} */
-bool comp(const pair<string, vector<int>> &a, const pair<string, vector<int>> &b)
-{
-    if(abs(a.second[0]-b.second[0])>10) return a.second[0]>b.second[0];
-    return a.first<b.first;
-}
+
 
 void solve(){
-    int n;cin>>n;
-    vector<pair<string,vector<int>>>arr(n);
-    FOR(i,0,n){
-        string t ;cin>>t;
-        vector<int>s(5);
-        FOR(i,1,5)cin>>s[i];
-        s[0]=accumulate(s.begin(),s.end(),0);
-        arr[i]={t,s};
-    }
-    sort(arr.begin(),arr.end(),comp);
-    FOR(i,0,n){
-        cout<<arr[i].first<<" ";
-        auto res=arr[i].second;
-        FOR(i,0,5){
-           cout<<res[i]<<" "; 
+ 
+    int n; cin >> n;
+ 
+    vi pp(16, 1);
+    for(int i=1; i < 16; i++) pp[i] = pp[i-1] * 10;
+ 
+    int x = 0, y = 0, p = 0, pos = 0;
+    while(n > 0){
+        int d = n%10; n /= 10;
+        if(d % 2 == 0){
+            d /= 2;
+            x += pp[pos] * d;
+            y += pp[pos] * d;
         }
-        cout<<"\n";
+        else{
+            auto &big = (p == 0) ? x : y;
+            auto &small = (p == 0) ? y : x;
+            int badd = (d-1)/2 + 1, sadd = d/2;
+            big += pp[pos] * badd;
+            small += pp[pos] * sadd;
+            p ^= 1;
+        }
+        pos++;
     }
-}
+    cout << x << " " << y << '\n';}
 
 int32_t main(){
     ios_base::sync_with_stdio(false);
 cin.tie(0);
 cout.tie(0);
   ll t=1;
-  //cin>>t;
+  cin>>t;
   TC(t){
     solve();
   }
