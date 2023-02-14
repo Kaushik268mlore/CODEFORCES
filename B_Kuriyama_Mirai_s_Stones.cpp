@@ -45,48 +45,30 @@ void sieve(){
     }
    }
 }
-ll a[105][105],b[105][105],c[105][105];
-ll n,m,k;
 
-ll get(int s,int e,ll a[],ll b[],ll c[],ll m,ll k){
-  priority_queue<int> pq;
- 
-  for(int i=0; i<m; ++i){
-    int profit = b[e][i] - a[s][i];
-    for(int j=0; j<c[s][i]; ++j)
-      pq.push(profit);
-  }
- 
-  int ret=0;
-  for(int i=0; !pq.empty() && i<k; ++i){
-    if(pq.top() > 0) ret += pq.top();
-    else break;
-    pq.pop();
-  }
- 
-  return ret;
-}
-int a[105][105], b[105][105], c[105][105];
-int k, n, m;
+
 void solve(){
-    ll a[105][105],b[105][105],c[105][105];
-    ll n,m,k;
-    cin >> n >> m >> k;
-    for(int i=0; i<n; ++i){
-      string planet;
-      cin >> planet;
- 
-      for(int j=0; j<m; ++j)
-        cin >> a[i][j] >> b[i][j] >> c[i][j];
+    ll n;cin>>n;
+    vector<ll> arr(n);
+    FOR(i,0,n)cin>>arr[i];
+    vector<ll> v=arr;
+    FOR(i,1,n)v[i]+=v[i-1];
+    sort(arr.begin(),arr.end());
+    vector<ll> s=arr;
+    FOR(i,1,n)s[i]+=s[i-1];
+    ll m;cin>>m;
+    //v[0]=0,s[0]=0;
+    FOR(i,0,m){
+        ll type,l,r;cin>>type>>l>>r;
+        l--,r--;
+        if(type==1){
+            if(l==0)cout<<v[r]<<"\n";
+            else cout<<(v[r]-v[l-1])<<"\n";
+        }
+        else 
+            if(l==0)cout<<s[r]<<"\n";
+            else cout<<(s[r]-s[l-1])<<"\n";
     }
- 
-    int ans=0;
-    for(int i=0; i<n; ++i)
-      for(int j=0; j<n; ++j)  
-        if(i!=j)
-          ans=max(ans, get(i, j,a,b,c,m,k));
- 
-    cout << ans;
 }
 
 int32_t main(){
@@ -94,7 +76,7 @@ int32_t main(){
 cin.tie(0);
 cout.tie(0);
   ll t=1;
-  cin>>t;
+  //cin>>t;
   TC(t){
     solve();
   }

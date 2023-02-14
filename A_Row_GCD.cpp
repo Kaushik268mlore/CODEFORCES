@@ -45,48 +45,29 @@ void sieve(){
     }
    }
 }
-ll a[105][105],b[105][105],c[105][105];
-ll n,m,k;
 
-ll get(int s,int e,ll a[],ll b[],ll c[],ll m,ll k){
-  priority_queue<int> pq;
- 
-  for(int i=0; i<m; ++i){
-    int profit = b[e][i] - a[s][i];
-    for(int j=0; j<c[s][i]; ++j)
-      pq.push(profit);
-  }
- 
-  int ret=0;
-  for(int i=0; !pq.empty() && i<k; ++i){
-    if(pq.top() > 0) ret += pq.top();
-    else break;
-    pq.pop();
-  }
- 
-  return ret;
-}
-int a[105][105], b[105][105], c[105][105];
-int k, n, m;
+/* From basic properties of GCD we know that GCD(x,y)=GCD(x−y,y)
+. The same applies for multiple arguments: GCD(x,y,z,…)=GCD(x−y,y,z,…)
+. Let's use this for GCD(a1+bj,…,an+bj)
+ and subtract a1+bj
+ from all other arguments: GCD(a1+bj,…,an+bj)=GCD(a1+bj,a2−a1,…,an−a1)
+.
+
+If we find G=GCD(a2−a1,…,an−a1)
+, then any answer can be found as GCD(a1+bj,G)
+. Note that we have to assume that GCD of an empty set is 0
+, and GCD(x,0)=x
+ for any x
+, since 0
+ is the only number divisible by any other number. */
 void solve(){
-    ll a[105][105],b[105][105],c[105][105];
-    ll n,m,k;
-    cin >> n >> m >> k;
-    for(int i=0; i<n; ++i){
-      string planet;
-      cin >> planet;
- 
-      for(int j=0; j<m; ++j)
-        cin >> a[i][j] >> b[i][j] >> c[i][j];
-    }
- 
-    int ans=0;
-    for(int i=0; i<n; ++i)
-      for(int j=0; j<n; ++j)  
-        if(i!=j)
-          ans=max(ans, get(i, j,a,b,c,m,k));
- 
-    cout << ans;
+    ll n,m;cin>>n>>m;
+    vector<ll> a(n),b(m);
+    FOR(i,0,n)cin>>a[i];
+    FOR(i,0,m)cin>>b[i];
+    ll res=0;
+    FOR(i,0,n-1)res=__gcd(res,abs(a[i]-a[i+1]));
+    FOR(i,0,m)cout<<__gcd(res,a[0]+b[i])<<" ";
 }
 
 int32_t main(){
@@ -94,7 +75,7 @@ int32_t main(){
 cin.tie(0);
 cout.tie(0);
   ll t=1;
-  cin>>t;
+  //cin>>t;
   TC(t){
     solve();
   }

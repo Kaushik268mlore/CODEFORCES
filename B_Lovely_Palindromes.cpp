@@ -45,48 +45,13 @@ void sieve(){
     }
    }
 }
-ll a[105][105],b[105][105],c[105][105];
-ll n,m,k;
 
-ll get(int s,int e,ll a[],ll b[],ll c[],ll m,ll k){
-  priority_queue<int> pq;
- 
-  for(int i=0; i<m; ++i){
-    int profit = b[e][i] - a[s][i];
-    for(int j=0; j<c[s][i]; ++j)
-      pq.push(profit);
-  }
- 
-  int ret=0;
-  for(int i=0; !pq.empty() && i<k; ++i){
-    if(pq.top() > 0) ret += pq.top();
-    else break;
-    pq.pop();
-  }
- 
-  return ret;
-}
-int a[105][105], b[105][105], c[105][105];
-int k, n, m;
-void solve(){
-    ll a[105][105],b[105][105],c[105][105];
-    ll n,m,k;
-    cin >> n >> m >> k;
-    for(int i=0; i<n; ++i){
-      string planet;
-      cin >> planet;
- 
-      for(int j=0; j<m; ++j)
-        cin >> a[i][j] >> b[i][j] >> c[i][j];
-    }
- 
-    int ans=0;
-    for(int i=0; i<n; ++i)
-      for(int j=0; j<n; ++j)  
-        if(i!=j)
-          ans=max(ans, get(i, j,a,b,c,m,k));
- 
-    cout << ans;
+
+void solve(){//  i didnt see that coming...this was easy af
+    string n;cin>>n;
+    string r=n;
+    reverse(r.begin(),r.end());
+    cout<<n+r<<endl;
 }
 
 int32_t main(){
@@ -94,7 +59,7 @@ int32_t main(){
 cin.tie(0);
 cout.tie(0);
   ll t=1;
-  cin>>t;
+// cin>>t;
   TC(t){
     solve();
   }

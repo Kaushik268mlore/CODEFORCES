@@ -45,48 +45,49 @@ void sieve(){
     }
    }
 }
-ll a[105][105],b[105][105],c[105][105];
-ll n,m,k;
 
-ll get(int s,int e,ll a[],ll b[],ll c[],ll m,ll k){
-  priority_queue<int> pq;
- 
-  for(int i=0; i<m; ++i){
-    int profit = b[e][i] - a[s][i];
-    for(int j=0; j<c[s][i]; ++j)
-      pq.push(profit);
-  }
- 
-  int ret=0;
-  for(int i=0; !pq.empty() && i<k; ++i){
-    if(pq.top() > 0) ret += pq.top();
-    else break;
-    pq.pop();
-  }
- 
-  return ret;
-}
-int a[105][105], b[105][105], c[105][105];
-int k, n, m;
+//this is kinda hard to implement , not much optimisation can be done..
 void solve(){
-    ll a[105][105],b[105][105],c[105][105];
-    ll n,m,k;
-    cin >> n >> m >> k;
-    for(int i=0; i<n; ++i){
-      string planet;
-      cin >> planet;
- 
-      for(int j=0; j<m; ++j)
-        cin >> a[i][j] >> b[i][j] >> c[i][j];
-    }
- 
-    int ans=0;
-    for(int i=0; i<n; ++i)
-      for(int j=0; j<n; ++j)  
-        if(i!=j)
-          ans=max(ans, get(i, j,a,b,c,m,k));
- 
-    cout << ans;
+    ll n;
+	cin>>n;
+	vl v(n);
+	for(ll i=0;i<n;i++)
+	{
+		cin>>v[i];
+	}
+	vl v2=v;
+	sort(v2.begin(),v2.end());
+ 	ll l,r;
+ 	bool check=false;
+	for(ll i=0;i<n;i++)
+	{
+		if(v[i]!=v2[i])
+		{
+			r=i;
+			if(!check)
+			{
+				l=i;
+				check=true;
+			}
+		}
+	}
+	if(!check)
+	{
+		cout<<"yes"<<endl<<"1 1";
+		return ;
+	}
+	//cout<<l<<" "<<r<<endl;
+	reverse(v.begin()+l,v.begin()+r+1);
+	for(ll i=0;i<n;i++)
+	{
+		if(v[i]!=v2[i])
+		{
+			cout<<"no";
+			return ;
+		}
+	}
+	cout<<"yes"<<endl;
+	cout<<l+1<<" "<<r+1;
 }
 
 int32_t main(){
@@ -94,7 +95,7 @@ int32_t main(){
 cin.tie(0);
 cout.tie(0);
   ll t=1;
-  cin>>t;
+  //cin>>t;
   TC(t){
     solve();
   }
