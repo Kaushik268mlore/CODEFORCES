@@ -57,6 +57,9 @@ public:
 		if (pv != pu) parent[pv] = pu;
 	}
 };
+#define MOD 1000000007
+#define SIZE 1e6+2
+#define endl "\n"
  
 ll pwr(ll a, ll b) {a %= mod; ll res = 1; while (b > 0) {if (b & 1) res = res * a % mod; a = a * a % mod; b >>= 1;} return res;}
 bool primes[1000001]={true};
@@ -71,8 +74,29 @@ void sieve(){
 
 
 void solve(){
-
+    ll n,m; cin>>n>>m;
+    vector<ll>v(m);
+    for(ll i=0; i<m; i++) cin>>v[i];
+    map<ll,ll>mp;
+    for(ll i=1; i<=n; i++) mp[i]=-1;
+    ll mom=1;
+    ll temp=n;
+    for(ll i=0; i<m; i++){
+       if(temp==0) break;
+       if(mp.find(v[i])==mp.end()){
+           mp[v[i]]=1;
+           mp[temp]=mom;
+           temp--;
+       }
+       mom++;
+    }
+    for(auto x: mp){
+        if(x.first<=n) cout<<x.second<<" ";
+    }
+    
+    cout<<endl;
 }
+
 
 int32_t main(){
     ios_base::sync_with_stdio(false);

@@ -70,8 +70,52 @@ void sieve(){
 }
 
 
-void solve(){
+bool chk(vector<ll> a) {
+    for(ll i = 0; i < a.size() - 1; i++) if(a[i] != a[i+1]) return false;
+    return true;
+}
 
+void solve() {
+    ll n; cin >> n;
+    vector<ll> a(n);
+    for(ll i = 0; i < n; i++) cin >> a[i];
+    
+    if(chk(a)) {
+        cout << 0 << endl;
+        return;
+    }
+    vector<vector<ll>> ans;
+    vector<ll> prev = a;
+    while(chk(a) == false) {
+        ll mini = INT_MAX;
+        ll ind = -1;
+        for(ll i = 0; i < n; i++) {
+            if(a[i] < mini) {
+                mini = a[i];
+                ind = i;
+            }
+        }
+        bool ok = false;
+        for(ll i = 0; i < n; i++) {
+            if(a[i] != mini and a[i] > mini) {
+                ll y = (a[i] / mini);
+                if(a[i] % mini != 0) {
+                    y++;
+                }
+                ans.push_back({i , ind});
+                a[i] = y;
+                ok = true;
+            }
+        }
+        if(a == prev) {
+            cout << -1 << endl;
+            return;
+        }
+        prev = a;
+    }
+    cout << ans.size() << endl;
+    for(auto it : ans) cout << it[0] + 1 << " " << it[1] + 1 << endl;
+    
 }
 
 int32_t main(){
