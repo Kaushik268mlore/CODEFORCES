@@ -71,7 +71,19 @@ void sieve(){
 
 
 void solve(){
-
+    int n;cin>>n;
+    string s;cin>>s;
+    transform(s.begin(),s.end(),s.begin(),::tolower);
+    //cout<<s<<" ";
+    string dummy="";
+    dummy+=s[0];
+    FOR(i,1,n){
+        if(s[i]!=s[i-1])dummy+=s[i];
+    }
+    
+    //cout<<dummy<<" ";
+    if(dummy=="meow")YES
+    else NO
 }
 
 int32_t main(){

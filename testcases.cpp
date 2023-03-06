@@ -71,7 +71,12 @@ void sieve(){
 
 
 void solve(){
-
+    int cnt=0;
+    FOR(i,6,10001){
+        cnt++;
+        cout<<i<<"\n";
+    }
+    cout<<"count"<<cnt;
 }
 
 int32_t main(){
@@ -79,7 +84,7 @@ int32_t main(){
 cin.tie(0);
 cout.tie(0);
   ll t=1;
-  cin>>t;
+  //cin>>t;
   TC(t){
     solve();
   }

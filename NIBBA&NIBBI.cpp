@@ -71,7 +71,9 @@ void sieve(){
 
 
 void solve(){
-
+ ll n;cin>>n;
+ if(n%6){cout<<"BIBBI\n";return;}
+ else cout<<"BIBBA\n";
 }
 
 int32_t main(){
